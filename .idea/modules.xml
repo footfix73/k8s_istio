@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/k8s_istio.iml" filepath="$PROJECT_DIR$/.idea/k8s_istio.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_k8s_istio_1/k8sistio.iml" filepath="$PROJECT_DIR$/demo_k8s_istio_1/k8sistio.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_k8s_istio_2/k8sistio (1).iml" filepath="$PROJECT_DIR$/demo_k8s_istio_2/k8sistio (1).iml" />
+    </modules>
+  </component>
+</project>
