@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-2-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-2-app
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: demo-2-app
+        version: v1
+    spec:
+      containers:
+        - name: demo-2-app
+          image: demo-2-app:1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: VERSION
+              value: "v1"
+          
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-2-app
+  labels:
+    app: demo-2-app
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: 8080
+      name: http
+  selector:
+    app: demo-2-app
+
+---
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: demo-2-app
+  labels:
+    account: demo-2-app
