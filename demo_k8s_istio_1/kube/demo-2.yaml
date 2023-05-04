@@ -1,3 +1,28 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: demo-2-app
+  labels:
+   account: demo-2-app
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-2-app
+  labels:
+    app: demo-2-app
+spec:
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+  selector:
+    app: demo-2-app
+
+---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -7,35 +32,20 @@ spec:
   selector:
     matchLabels:
       app: demo-2-app
+      version: v1
   template:
     metadata:
       labels:
         app: demo-2-app
+        version: v1
     spec:
+      serviceAccountName: demo-2-app
       containers:
         - name: demo-2-app
-          image: arup91/demo-2:latest
+          image: demo-2-app:1.0.0
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
-          imagePullPolicy: Always
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: demo-2-app
-spec:
-  selector:
-    app: demo-2-app
-  ports:
-    - port: 8080
-      targetPort: 8080
-
----
-
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: demo-2-app
-  labels:
-    account: demo-2-app
+          env:
+            - name: VERSION
+              value: "v1"

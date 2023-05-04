@@ -1,3 +1,28 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: demo-2-app
+  labels:
+   account: demo-2-app
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-2-app
+  labels:
+    app: demo-2-app
+spec:
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+  selector:
+    app: demo-2-app
+
+---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -14,6 +39,7 @@ spec:
         app: demo-2-app
         version: v1
     spec:
+      serviceAccountName: demo-2-app
       containers:
         - name: demo-2-app
           image: demo-2-app:1.0.0
@@ -23,29 +49,3 @@ spec:
           env:
             - name: VERSION
               value: "v1"
-          
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: demo-2-app
-  labels:
-    app: demo-2-app
-spec:
-  type: ClusterIP
-  ports:
-    - port: 8080
-      targetPort: 8080
-      name: http
-  selector:
-    app: demo-2-app
-
----
-
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: demo-2-app
-  labels:
-    account: demo-2-app

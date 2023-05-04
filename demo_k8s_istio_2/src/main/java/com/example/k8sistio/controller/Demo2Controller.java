@@ -1,7 +1,10 @@
 package com.example.k8sistio.controller;
 
+import java.time.LocalDate;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -9,23 +12,22 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 public class Demo2Controller {
 	
+	private static Log log = LogFactory.getLog(Demo2Controller.class);
+
 	@Autowired
 	private RestTemplate restTemplate;
 	
-	@Bean
-	public RestTemplate restTemplate() {
-	  return new RestTemplate();
-	}
-
 	@GetMapping("/service-2")
 	public String getValues() {
-		return "Getting Called by Service 2";
+		log.info("Llamando al servicio 2");
+		return "Obteniendo en la llamada del servicio 2 [" + LocalDate.now() + "]";
 	}
 	
 	@GetMapping("/service-2-1")
 	public String getValueFromService2() {
-		String val = restTemplate.getForObject("http://demo-2-app:8080/service-2", String.class);
-		return "Service call from service 1 to service 2 --- " + val;
+		log.info("Llamando al servicio 2-1");
+		String val = restTemplate.getForObject("http://demo-1-app:8080/service-1", String.class);
+		return "Ha llamado al servicio 2-1 que ha llamadoa al servicio 1 --- " + val;
 	}
 
 }

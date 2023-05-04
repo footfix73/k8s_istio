@@ -21,20 +21,16 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
 		<dependency>
     		<groupId>org.springframework</groupId>
     		<artifactId>spring-web</artifactId>
-    		<!--<version>6.0.8</version>-->
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -43,5 +39,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

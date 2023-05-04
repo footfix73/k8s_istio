@@ -4,7 +4,7 @@
 ## 1. COMO ACCEDER AL CLUSTER KUBERNETES
 ----------------------------------------------------------------------------
     - kubectl get po -A
-	- minikube kubectl -- get po -A
+	  - minikube kubectl -- get po -A
 					
 ## 2. DASHBOARD MINIKUBE
 ----------------------------------------------------------------------------
@@ -33,6 +33,7 @@ Y la solicitud estaría disponible en http://localhost:7080/.
     - Catalogo:                       minikube addons list
     - Crear un segundo cluster:       minikube start -p aged 
     - Borrar todos los cluster:       minikube delete --all
+    - Borrar deployment:              kubectl delete deployment <deployment>
 
 
 ## 5. KUBERNETES + ISTIO
@@ -90,7 +91,7 @@ Y la solicitud estaría disponible en http://localhost:7080/.
     Ir al directorio donde se instalo istio y realizar lo siguiente
 	
     - kubectl apply -f .
-	- get pod -n istio-system
+	  - get pod -n istio-system
 
 ## 7. REALIZAR UN PORT-FORWARD O SERVICIO NODEPORT PARA VER LOS ADDONS CREADOS POR EJEMPLO KIALI
 ----------------------------------------------------------------------------
@@ -111,21 +112,21 @@ Y la solicitud estaría disponible en http://localhost:7080/.
 
     8.3 EN EL DIRECTORIO KUBE DEL PROYECTO EJECUTAR EL SIGUIENTE COMOANDO POR EL TERMINAL Y DESPLEGAR LOS MICROS EN KUBERNETES
 	
-	  - eval $(minikube docker-env)
+	    - eval $(minikube docker-env)
 	  
-	  - docker build . -t demo-1-app:1.0.0 (opcional --> docker tag demo-1-app:1.0.0 arup91/demo-1-app-svc:1.0.0 /// docker push arup91/demo-1-app-svc:1.0.0)
+	    - docker build . -t demo-1-app:1.0.0 (opcional --> docker tag demo-1-app:1.0.0 arup91/demo-1-app-svc:1.0.0 /// docker push arup91/demo-1-app-svc:1.0.0)
       - docker build . -t demo-2-app:1.0.0 (opcional --> docker tag demo-2-app:1.0.0 arup91/demo-2-app-svc:1.0.0 /// docker push arup91/demo-2-app-svc:1.0.0)
       
       - kubectl apply -f ./kube
       - kubectl get pods
 
-    8.4 CONFIGURAR EL PUERTO PARA COMPROBAR LOS ENDPOINTS CONFIGURADOS 
+    8.4 CONFIGURAR EL PUERTO PARA COMPROBAR LOS ENDPOINTS CONFIGURADOS (exponer hacia fuera los servicios)
     
       - kubectl port-forward service/istio-ingressgateway 8002:80 -n istio-system
 
     8.5 ENDPOINTS PARA PROBAR
-      - http://localhost/service-1 
-      - http://localhost:service-2
+      - http://localhost:8002/service-1 
+      - http://localhost:8002/service-2
 
 9. OTROS COMANDOS
 ----------------------------------------------------------------------------

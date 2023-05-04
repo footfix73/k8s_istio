@@ -90,7 +90,7 @@ Y la solicitud estaría disponible en http://localhost:7080/.
     Ir al directorio donde se instalo istio y realizar lo siguiente
 	
     - kubectl apply -f .
-	- get pod -n istio-system
+	  - get pod -n istio-system
 
 ## 7. REALIZAR UN PORT-FORWARD O SERVICIO NODEPORT PARA VER LOS ADDONS CREADOS POR EJEMPLO KIALI
 ----------------------------------------------------------------------------
@@ -100,7 +100,11 @@ Y la solicitud estaría disponible en http://localhost:7080/.
 	
 ## 8. DEPLOY SPRINGBOOT KUBERNETES E ISTIO (https://arupmishra91.medium.com/basic-example-of-spring-boot-microservice-using-istio-as-service-mesh-673073dcab07)
 ----------------------------------------------------------------------------
-    
+    8.0 CREAR LAS IMAGENES DOCKER
+
+      - docker build -t demo-1-app:v1 .
+      - docker build -t demo-2-app:v1 .
+
     8.1 UTILIZAR SERVICIO "SERVICE MESH" DE ISTIO PARA APLICAR MANIFIESTO PARA ESTABLECER CONFIGURACION DEL PERFIL DE ISTIO EN "DEMO" AL DESPLEGAR APPLICACION
 
       - istioctl manifest apply --set profile=demo
