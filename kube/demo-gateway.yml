@@ -43,3 +43,13 @@ spec:
         host: demo-2-app
         port:
           number: 8080
+  - match:
+    - uri:
+        exact: /service-3
+    - uri:
+        exact: /service-3-1
+    route:
+    - destination:
+        host: demo-3-app
+        port:
+          number: 8080
