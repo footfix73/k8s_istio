@@ -102,8 +102,9 @@ Y la solicitud estaría disponible en http://localhost:7080/.
 ----------------------------------------------------------------------------
     8.0 CREAR LAS IMAGENES DOCKER
 
-      - docker build -t demo-1-app:v1 .
-      - docker build -t demo-2-app:v1 .
+      - docker build -t demo-1-app:1.0.0 .
+      - docker build -t demo-2-app:1.0.0 .
+      - docker build -t demo-3-app:1.0.0 .
 
     8.1 UTILIZAR SERVICIO "SERVICE MESH" DE ISTIO PARA APLICAR MANIFIESTO PARA ESTABLECER CONFIGURACION DEL PERFIL DE ISTIO EN "DEMO" AL DESPLEGAR APPLICACION
 

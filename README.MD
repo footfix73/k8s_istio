@@ -114,8 +114,8 @@ Y la solicitud estaría disponible en http://localhost:7080/.
 	
 	    - eval $(minikube docker-env)
 	  
-	    - docker build . -t demo-1-app:1.0.0 (opcional --> docker tag demo-1-app:1.0.0 arup91/demo-1-app-svc:1.0.0 /// docker push arup91/demo-1-app-svc:1.0.0)
-      - docker build . -t demo-2-app:1.0.0 (opcional --> docker tag demo-2-app:1.0.0 arup91/demo-2-app-svc:1.0.0 /// docker push arup91/demo-2-app-svc:1.0.0)
+	    - docker build --no-cache . -t demo-1-app:1.0.0 (opcional --> docker tag demo-1-app:1.0.0 arup91/demo-1-app-svc:1.0.0 /// docker push arup91/demo-1-app-svc:1.0.0)
+      - docker build --no-cache . -t demo-2-app:1.0.0 (opcional --> docker tag demo-2-app:1.0.0 arup91/demo-2-app-svc:1.0.0 /// docker push arup91/demo-2-app-svc:1.0.0)
       
       - kubectl apply -f ./kube
       - kubectl get pods
@@ -131,6 +131,7 @@ Y la solicitud estaría disponible en http://localhost:7080/.
 9. OTROS COMANDOS
 ----------------------------------------------------------------------------
 
+    - docker login --username 
     - minikube.exe service demo-1-app --url
 	
     - kubectl get services -n my-namespace

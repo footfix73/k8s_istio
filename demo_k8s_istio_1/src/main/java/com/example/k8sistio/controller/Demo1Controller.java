@@ -2,9 +2,12 @@ package com.example.k8sistio.controller;
 
 import java.time.LocalDate;
 
+import com.example.k8sistio.response.ResponseCustom;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -12,7 +15,11 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 public class Demo1Controller {
 
-	private static final String HTTP_DEMO_2_APP_8080_SERVICE_2 = "http://demo-2-app:8080/service-2";
+	public static final String HA_LLAMADO_AL_SERVICIO_1_2_3_QUE_HA_LLAMADOA_AL_SERVICIO_2 = "Ha llamado al servicio 1-2-3 que ha llamadoa al servicio 2";
+	@Value("${micro.service2}")
+	private String service2;
+	@Value("${micro.service23}")
+	private String service23;
 
 	private static Log log = LogFactory.getLog(Demo1Controller.class);
 	
@@ -25,11 +32,19 @@ public class Demo1Controller {
 		return "Ha llamado al servicio 1 [" + LocalDate.now() + "]";
 	}
 	
-	@GetMapping("/service-1-2")
-	public String getValueFromService2() {
+	@GetMapping("/service-1-2-3")
+	public ResponseEntity<ResponseCustom> getValueFromService2() {
 		log.info("Ha llamado al endpoint 1-2 que conectara con el Microservicio 2 y el endpoint 2 [" + LocalDate.now() + "]");
-		String val = restTemplate.getForObject(HTTP_DEMO_2_APP_8080_SERVICE_2, String.class);
-		return "Ha llamado al servicio 1-2 que ha llamadoa al servicio 2 --- " + val;
+		String val = restTemplate.getForObject(service23, String.class);
+
+		if (val == null) {
+			return ResponseEntity.notFound().build();
+		} else {
+			String[] parts = val.split("---");
+			ResponseCustom responseCustom = new ResponseCustom(HA_LLAMADO_AL_SERVICIO_1_2_3_QUE_HA_LLAMADOA_AL_SERVICIO_2,parts[1],parts[0]);
+
+			return ResponseEntity.ok(responseCustom);
+		}
 	}
 
 }
