@@ -42,7 +42,7 @@ spec:
       serviceAccountName: demo-3-app
       containers:
         - name: demo-3-app
-          image: demo-3-app:1.0.0
+          image: demo-3-app:2.0.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
