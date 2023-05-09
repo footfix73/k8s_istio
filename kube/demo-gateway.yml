@@ -27,7 +27,7 @@ spec:
     - uri:
         exact: /service-1
     - uri:
-        exact: /service-1-2
+        exact: /service-1-2-3
     route:
     - destination:
         host: demo-1-app
@@ -37,7 +37,7 @@ spec:
     - uri:
         exact: /service-2
     - uri:
-        exact: /service-2-1
+        exact: /service-2-3
     route:
     - destination:
         host: demo-2-app

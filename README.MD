@@ -4,7 +4,7 @@
 ## 1. COMO ACCEDER AL CLUSTER KUBERNETES
 ----------------------------------------------------------------------------
     - kubectl get po -A
-	  - minikube kubectl -- get po -A
+	- minikube kubectl -- get po -A
 					
 ## 2. DASHBOARD MINIKUBE
 ----------------------------------------------------------------------------
@@ -108,7 +108,7 @@ Y la solicitud estaría disponible en http://localhost:7080/.
 
     8.2 INYECTAR ISTIO EN EL NAMESPACE ELEGIDO
     
-      - kubectl label namespace demok8s istio-injection=enabled
+      - kubectl label namespace demo istio-injection=enabled
 
     8.3 EN EL DIRECTORIO KUBE DEL PROYECTO EJECUTAR EL SIGUIENTE COMOANDO POR EL TERMINAL Y DESPLEGAR LOS MICROS EN KUBERNETES
 	
@@ -128,6 +128,12 @@ Y la solicitud estaría disponible en http://localhost:7080/.
       - http://localhost:8002/service-1 
       - http://localhost:8002/service-2
 
+    8.6 NOTAS IMPORTANTES
+      1.- En el dashboard de Docker no debe uno entrar con login
+      2.- En el dashboard de Docker no debe aparecer la imagen de docker, ya que solo debe generarse en local
+      3.- Si el punto 2 aparece poner la siguiente comando, si es linux o semejante eval $(minikube docker-env) y si es windows en el cmd sin el eval
+      4.- Si no funciona la url tenemos que hacer el port-forwarding
+
 9. OTROS COMANDOS
 ----------------------------------------------------------------------------
 
@@ -140,12 +146,25 @@ Y la solicitud estaría disponible en http://localhost:7080/.
     
     - kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}:{.spec.ports[?(@.name=="http2")].port}'
     
+**10.- IMPORTANTE**
+
+    Tras la instalacion de minikube en local tanto en windows y/o mac se detecto varios incovenientes estos son los pasos definitivos
+    
+    - minikube start --memory=8192 --cpus=4 --addons=ingress
+    - kubectl rollout restart deployment -n istio-system (si te da un error de TLS/HANDSHAKE)
+    - kubectl port-forward service/istio-ingressgateway 8002:80 -n istio-system (Necesario para probar gateway de istio con MINIKUBE)
+    - Tener en cuenta que al lanzar los deploy se queden en local y no se suban a dockerHUB dara errores de permisos, para ello en la misma terminal(console/cmd/powershell)
+        lanzar el siguiente comando **eval $(minikube docker-env)** o minikube docker-env
+    - Asegurarse que las imagenes docker no se despliegan en el dockerHUB
+    - Lanzar los deployment que vienen en la carpeta y deberian hacer el pull de la imagen sin problemas
+
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax
 
 | Plugin | README |
 | ------ | ------ |
 | Instalación y Configuración de ISTIO en KUBERNETES | [https://www.youtube.com/watch?v=nRxWnBE0wzE][PlDb] |
 | Basic Example of Spring Boot Microservice using Istio as Service Mesh | [https://arupmishra91.medium.com/basic-example-of-spring-boot-microservice-using-istio-as-service-mesh-673073dcab07][PlGh] |
+
 
 License
 MIT

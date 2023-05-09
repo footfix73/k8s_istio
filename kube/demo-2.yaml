@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: demo-2-app
-          image: demo-2-app:2.0.0
+          image: demo-2-app:5.0.0
           ports:
             - containerPort: 8080
           imagePullPolicy: IfNotPresent
