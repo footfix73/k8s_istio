@@ -41,7 +41,8 @@ public class Demo1Controller {
 			return ResponseEntity.notFound().build();
 		} else {
 			String[] parts = val.split("---");
-			ResponseCustom responseCustom = new ResponseCustom(HA_LLAMADO_AL_SERVICIO_1_2_3_QUE_HA_LLAMADOA_AL_SERVICIO_2,parts[1],parts[0]);
+			ResponseCustom responseCustom = new ResponseCustom(
+				HA_LLAMADO_AL_SERVICIO_1_2_3_QUE_HA_LLAMADOA_AL_SERVICIO_2, parts[0],parts[1]);
 
 			return ResponseEntity.ok(responseCustom);
 		}

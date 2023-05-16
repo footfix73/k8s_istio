@@ -127,6 +127,18 @@ Y la solicitud estaría disponible en http://localhost:7080/.
       - http://localhost/service-1 
       - http://localhost:service-2
 
+## 9. DEPLOY CON HELM
+    Si queremos hacer un deploy con helm aqui vemos los comandos que deben necesitarse, hay que instalar 
+    Helm y agregarlo al PATH una vez agregado lo que haremos es configurar los ficheros, en la carpeta CHARTS 
+    de cada proyecto tenemos un ejemplo y a continuacion los comandos basicos para realizar los deploys desde
+    HELM
+
+    - helm uninstall demo-1-app (aqui si al instalar tenemos fallo realizamos un unistall previo)
+    - helm template my-release /c/Inetum/Proyectos/Inetum/Repositorio/k8s_istio/demo_k8s_istio_1/charts/
+    - helm install demo-1-app /c/Inetum/Proyectos/Inetum/Repositorio/k8s_istio/demo_k8s_istio_1/charts/
+
+    Recordar configurar y añadir las opciones correspondientes para mejorar el proceso
+
 9. OTROS COMANDOS
 ----------------------------------------------------------------------------
 

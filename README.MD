@@ -153,7 +153,7 @@ Y la solicitud estaría disponible en http://localhost:7080/.
     - minikube start --memory=8192 --cpus=4 --addons=ingress
     - kubectl rollout restart deployment -n istio-system (si te da un error de TLS/HANDSHAKE)
     - kubectl port-forward service/istio-ingressgateway 8002:80 -n istio-system (Necesario para probar gateway de istio con MINIKUBE)
-    - Tener en cuenta que al lanzar los deploy se queden en local y no se suban a dockerHUB dara errores de permisos, para ello en la misma terminal(console/cmd/powershell)
+    - Tener en cuenta que al lanzar los deploy se queden en local y no se suban a dockerHUB dara errores de permisos, para  ello en la misma terminal(console/cmd/powershell)
         lanzar el siguiente comando **eval $(minikube docker-env)** o minikube docker-env
     - Asegurarse que las imagenes docker no se despliegan en el dockerHUB
     - Lanzar los deployment que vienen en la carpeta y deberian hacer el pull de la imagen sin problemas
