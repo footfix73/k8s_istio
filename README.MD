@@ -151,11 +151,15 @@ Y la solicitud estaría disponible en http://localhost:7080/.
     Tras la instalacion de minikube en local tanto en windows y/o mac se detecto varios incovenientes estos son los pasos definitivos
     
     - minikube start --memory=8192 --cpus=4 --addons=ingress
+
     - kubectl rollout restart deployment -n istio-system (si te da un error de TLS/HANDSHAKE)
+
     - kubectl port-forward service/istio-ingressgateway 8002:80 -n istio-system (Necesario para probar gateway de istio con MINIKUBE)
-    - Tener en cuenta que al lanzar los deploy se queden en local y no se suban a dockerHUB dara errores de permisos, para  ello en la misma terminal(console/cmd/powershell)
-        lanzar el siguiente comando **eval $(minikube docker-env)** o minikube docker-env
+
+    - Tener en cuenta que al lanzar los deploy se queden en local y no se suban a dockerHUB dara errores de permisos, para  ello en la misma terminal(console/cmd/powershell) lanzar el siguiente comando **eval $(minikube docker-env)** o minikube docker-env
+
     - Asegurarse que las imagenes docker no se despliegan en el dockerHUB
+    
     - Lanzar los deployment que vienen en la carpeta y deberian hacer el pull de la imagen sin problemas
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax
