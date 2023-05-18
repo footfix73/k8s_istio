@@ -59,3 +59,9 @@ Escribir un header es obligatorio en los commits, pero el scope es opcional.
 
 ## Footer
     El footer también es opcional y suele utilizarse para añadir enlaces a algún issue tracker que estés utilizando como Jira, Redmine o Clubhouse.
+
+## Samples
+
+    feat: Modificacion funcionalidad grafica
+
+    Se ha cambiado el color de la pantalla de inicio
