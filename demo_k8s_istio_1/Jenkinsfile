@@ -14,11 +14,12 @@ pipeline {
 			steps {
 				git branch: 'main', url: 'https://github.com/footfix73/k8s_istio.git'
 				
-				script {
-					def pom = readMavenPom file: 'pom.xml'
-					version = pom.version
-				}
-				sh "mvn -f /demo_k8s_istio_1 clean install -DskipTests=true"
+				//script {
+				//	def pom = readMavenPom file: 'pom.xml'
+				//	version = pom.version
+				//}
+				sh "mvn -f /demo_k8s_istio_1"
+				sh "mvn clean install -DskipTests=true"
             }
 		}
 		
