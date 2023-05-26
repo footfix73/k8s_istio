@@ -62,7 +62,6 @@ pipeline {
 				sh "rm -rf ocp && mkdir -p ocp/deployments"
 				sh "pwd && ls -la target "
 				sh "cd target"
-				sh "pwd && ls -la target "
 				sh "cp k8sistio-*.jar ocp/deployments"
 
 				script {
