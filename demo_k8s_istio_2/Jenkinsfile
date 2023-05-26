@@ -1,4 +1,4 @@
-appName = "demo-1-app"
+appName = "demo-2-app"
 
 pipeline {
 	agent {
@@ -14,7 +14,7 @@ pipeline {
 					def pom = readMavenPom file: 'pom.xml'
 					version = pom.version
 				}
-				sh "mvn -f demo_k8s_istio_1/pom.xml clean install -DskipTests=true"
+				sh "mvn -f demo_k8s_istio_2/pom.xml clean install -DskipTests=true"
             }
 		}
 		
@@ -40,7 +40,7 @@ pipeline {
 				expression {
 					openshift.withCluster() {
 						openshift.withProject("vicentegarcia-dev") {
-							return !openshift.selector("bc", "demo-1-app").exists();
+							return !openshift.selector("bc", "demo-2-app").exists();
 						}
 					}
 				}
@@ -50,7 +50,7 @@ pipeline {
 					echo "Create Image Builder"
 					openshift.withCluster() {
 						openshift.withProject("vicentegarcia-dev") {
-							openshift.newBuild("--name=demo-1-app", "--docker-image=registry.redhat.io/jboss-eap-7/eap74-openjdk11-openshift-rhel8", "--binary") 
+							openshift.newBuild("--name=demo-2-app", "--docker-image=registry.redhat.io/jboss-eap-7/eap74-openjdk11-openshift-rhel8", "--binary") 
 						}
 					}
 				}
@@ -67,7 +67,7 @@ pipeline {
 					echo "Build Image"
 					openshift.withCluster() {
 						openshift.withProject("vicentegarcia-dev") {
-							openshift.selector("bc", "demo-1-app").startBuild("--from-dir=./ocp","--follow", "--wait=true")
+							openshift.selector("bc", "demo-2-app").startBuild("--from-dir=./ocp","--follow", "--wait=true")
 						}
 					}
 				}
@@ -112,14 +112,14 @@ pipeline {
 					echo "Deploy DEV"
 					openshift.withCluster() {
 						openshift.withProject("vicentegarcia-dev") {
-							def deployment = openshift.selector("dc", "demo-1-app") 
+							def deployment = openshift.selector("dc", "demo-2-app") 
     
               				if(!deployment.exists()){ 
-                				openshift.newApp('demo-1-app', "--as-deployment-config").narrow('svc').expose() 
+                				openshift.newApp('demo-2-app', "--as-deployment-config").narrow('svc').expose() 
               				} 
     
               				timeout(5) { 
-                				openshift.selector("dc", "demo-1-app").related('pods').untilEach(1) { 
+                				openshift.selector("dc", "demo-2-app").related('pods').untilEach(1) { 
                   					return (it.object().status.phase == "Running") 
                 				} 
               				}
