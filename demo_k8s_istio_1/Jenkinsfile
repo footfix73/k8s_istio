@@ -61,7 +61,7 @@ pipeline {
 			steps {
 				sh "rm -rf ocp && mkdir -p ocp/deployments"
 				sh "pwd && ls -la target "
-				sh "cp demo_k8s_istio_1/target/k8sistio-*.jar ocp/deployments"
+				sh "cp k8s_istio/demo_k8s_istio_1/target/k8sistio-*.jar ocp/deployments"
 
 				script {
 					echo "Build Image"
