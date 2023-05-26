@@ -60,8 +60,8 @@ pipeline {
 		stage('Build Image') {
 			steps {
 				sh "rm -rf ocp && mkdir -p ocp/deployments"
-				sh "pwd && ls -la target "
-				sh "cp target/spring-boot-*.jar ocp/deployments"
+				sh "pwd && ls -la demo_k8s_istio_3/target "
+				sh "cp demo_k8s_istio_3/target/k8sistio-*.jar ocp/deployments"
 
 				script {
 					echo "Build Image"
