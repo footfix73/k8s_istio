@@ -8,7 +8,7 @@ pipeline {
 	stages {
 		stage('Build App') {
 			steps {
-				git branch: 'main', url: 'https://github.com/footfix73/k8s_istio.git'
+				git branch: 'master', url: 'https://github.com/footfix73/k8s_istio.git'
 				
 				script {
 					def pom = readMavenPom file: 'pom.xml'
